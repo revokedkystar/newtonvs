@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { business, navLinks } from "@/lib/site";
 import { CloseIcon, MenuIcon, PhoneIcon } from "./icons";
+import { BrandMark } from "./BrandMark";
 import { ButtonLink } from "./ui/Button";
 
 export function Navbar() {
@@ -36,14 +37,7 @@ export function Navbar() {
       <nav aria-label="Main" className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:h-20 lg:px-8">
         <a href="#top" className="flex min-w-0 items-center gap-3" aria-label={`${business.name} — back to top`}>
           <Image src="/images/logo.png" alt="" width={44} height={44} priority className="h-10 w-10 shrink-0 lg:h-11 lg:w-11" />
-          <span className="min-w-0 leading-none">
-            <span className="display block truncate text-lg sm:text-xl">
-              Newton <span className="text-racing">Vehicle Solutions</span>
-            </span>
-            <span className="mt-1 block text-[10px] font-medium uppercase tracking-[0.35em] text-silver">
-              {business.tagline}
-            </span>
-          </span>
+          <BrandMark />
         </a>
 
         <div className="hidden items-center gap-8 lg:flex">
@@ -107,7 +101,7 @@ export function Navbar() {
                   <a
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="display flex items-center justify-between rounded-md px-3 py-3 text-2xl hover:bg-white/5"
+                    className="display flex items-center justify-between rounded-md px-3 py-3 text-xl hover:bg-white/5"
                   >
                     {link.label}
                     <span className="text-racing">/</span>

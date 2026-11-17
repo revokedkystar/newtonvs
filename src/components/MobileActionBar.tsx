@@ -51,14 +51,14 @@ export function MobileActionBar() {
           <div className="grid grid-cols-2 gap-2">
             <a
               href={business.phoneHref}
-              className="flex h-12 items-center justify-center gap-2 rounded-md bg-racing text-sm font-semibold uppercase tracking-wide active:scale-[0.97]"
+              className="flex h-12 items-center justify-center gap-2 rounded-md bg-racing text-sm font-display font-bold uppercase tracking-wide [font-stretch:112.5%] active:scale-[0.97]"
             >
               <PhoneIcon className="h-4 w-4" />
               Call Now
             </a>
             <a
               href="#quote"
-              className="flex h-12 items-center justify-center rounded-md border border-white/20 bg-white/5 text-sm font-semibold uppercase tracking-wide active:scale-[0.97]"
+              className="flex h-12 items-center justify-center rounded-md border border-white/20 bg-white/5 text-sm font-display font-bold uppercase tracking-wide [font-stretch:112.5%] active:scale-[0.97]"
             >
               Free Quote
             </a>

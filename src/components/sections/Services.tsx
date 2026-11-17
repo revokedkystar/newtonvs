@@ -37,13 +37,13 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
             <p className="text-[11px] font-medium uppercase tracking-widest text-silver">
               {quoted ? "Priced per job" : "From"}
             </p>
-            <p className="display text-4xl text-white sm:text-5xl">
+            <p className="display text-3xl text-white sm:text-4xl">
               {quoted ? "Quote" : formatPrice(service.priceFrom)}
             </p>
           </div>
         </div>
 
-        <h3 className="display mt-6 text-2xl sm:text-[1.7rem]">{service.name}</h3>
+        <h3 className="display mt-6 text-lg sm:text-xl">{service.name}</h3>
         <p className="mt-2 text-sm leading-relaxed text-silver">{service.description}</p>
 
         <ul className="mt-5 space-y-2 border-t border-white/5 pt-5">
@@ -58,7 +58,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
         <button
           type="button"
           onClick={() => bookService(service.name)}
-          className="mt-auto flex items-center gap-2 pt-7 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:text-racing"
+          className="mt-auto flex items-center gap-2 pt-7 text-sm font-display font-bold uppercase tracking-wide [font-stretch:112.5%] text-white transition-colors hover:text-racing"
         >
           {quoted ? "Request a Quote" : "Book This Service"}
           <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -101,7 +101,7 @@ export function Services() {
             <div className="relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-xl bg-racing p-6 sm:p-7 lg:flex-row lg:items-end lg:p-10">
               <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
               <div className="relative max-w-md">
-                <p className="display text-3xl sm:text-4xl lg:text-5xl">Not sure what&apos;s wrong?</p>
+                <p className="display text-2xl sm:text-3xl lg:text-4xl">Not sure what&apos;s wrong?</p>
                 <p className="mt-3 text-sm leading-relaxed text-white/85">
                   Describe the noise, the warning light or the symptom and James will tell you the likely cause
                   and a fair price — no obligation.
@@ -109,7 +109,7 @@ export function Services() {
               </div>
               <a
                 href={business.phoneHref}
-                className="relative inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-md bg-ink px-6 font-semibold uppercase tracking-wide text-white transition-transform active:scale-[0.97] hover:bg-ink-3"
+                className="relative inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-md bg-ink px-6 font-display font-bold uppercase tracking-wide [font-stretch:112.5%] text-white transition-transform active:scale-[0.97] hover:bg-ink-3"
               >
                 <PhoneIcon className="h-4 w-4" />
                 {business.phoneDisplay}

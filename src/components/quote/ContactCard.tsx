@@ -10,7 +10,7 @@ export function ContactCard() {
       >
         <div className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-white/10 blur-2xl transition-transform duration-500 group-hover:scale-125" />
         <p className="relative text-xs font-semibold uppercase tracking-[0.25em] text-white/80">Prefer to talk?</p>
-        <p className="display relative mt-3 flex items-center gap-3 text-4xl sm:text-5xl">
+        <p className="display relative mt-3 flex items-center gap-3 text-[1.7rem] sm:text-4xl">
           <PhoneIcon className="h-8 w-8 shrink-0" />
           {business.phoneDisplay}
         </p>

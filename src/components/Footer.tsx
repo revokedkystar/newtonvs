@@ -9,15 +9,13 @@ export function Footer() {
       <div className="speed-stripe absolute inset-x-0 top-0 h-px" />
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
-          <div className="flex items-center gap-3">
-            <Image src="/images/logo.png" alt="" width={56} height={56} className="h-14 w-14" />
-            <div>
-              <p className="display text-2xl">
-                Newton <span className="text-racing">Vehicle Solutions</span>
-              </p>
-              <p className="text-[10px] uppercase tracking-[0.35em] text-silver">{business.tagline}</p>
-            </div>
-          </div>
+          <Image
+            src="/images/logo-full.png"
+            alt={`${business.name} — ${business.tagline}`}
+            width={863}
+            height={504}
+            className="h-auto w-56 sm:w-64"
+          />
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-silver">
             Diagnostics, repairs, servicing, brakes, suspension and remaps — brought to your door by{" "}
             {business.owner}, with over {business.yearsExperience} years&apos; experience.
@@ -34,7 +32,7 @@ export function Footer() {
         </div>
 
         <nav aria-label="Footer">
-          <p className="display text-lg not-italic text-white">Explore</p>
+          <p className="brand-caps text-sm tracking-[0.2em] text-white">Explore</p>
           <ul className="mt-4 space-y-3 text-sm text-silver">
             {navLinks.map((l) => (
               <li key={l.href}>
@@ -47,7 +45,7 @@ export function Footer() {
         </nav>
 
         <div>
-          <p className="display text-lg not-italic text-white">Contact</p>
+          <p className="brand-caps text-sm tracking-[0.2em] text-white">Contact</p>
           <ul className="mt-4 space-y-3 text-sm text-silver">
             <li>
               <a href={business.phoneHref} className="flex items-center gap-3 transition-colors hover:text-white">

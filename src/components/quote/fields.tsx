@@ -65,7 +65,7 @@ export function PlateInput({ value, onValueChange, ...props }: PlateInputProps) 
         autoCorrect="off"
         spellCheck={false}
         maxLength={8}
-        className="w-full bg-transparent px-3 text-center font-display text-3xl font-bold uppercase tracking-[0.12em] text-black placeholder:text-black/25 focus:outline-none"
+        className="w-full bg-transparent px-3 text-center font-display text-[1.7rem] font-bold uppercase tracking-[0.06em] text-black placeholder:text-black/25 focus:outline-none"
       />
     </div>
   );

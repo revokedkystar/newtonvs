@@ -38,7 +38,7 @@ export function Hero() {
           Covering {business.town} &amp; Teignbridge
         </motion.p>
 
-        <motion.h1 {...fadeUp(0.08)} className="display mt-6 max-w-4xl text-[2.9rem] sm:text-6xl lg:max-w-[46rem] lg:text-[5.25rem]">
+        <motion.h1 {...fadeUp(0.08)} className="display mt-6 max-w-4xl text-[2.05rem] sm:text-5xl lg:max-w-[44rem] lg:text-[3.6rem]">
           Expert Mobile Mechanic in {business.town}
           <span className="mt-2 block text-racing">
             — We Come to You
@@ -103,7 +103,7 @@ export function Hero() {
               <span className="grid h-9 w-9 shrink-0 -skew-x-6 place-items-center rounded-md bg-racing/15 text-racing">
                 <Icon className="h-5 w-5 skew-x-6" />
               </span>
-              <span className="display text-base not-italic leading-tight sm:text-lg">{label}</span>
+              <span className="display text-xs not-italic leading-tight sm:text-sm">{label}</span>
             </motion.li>
           ))}
         </ul>
