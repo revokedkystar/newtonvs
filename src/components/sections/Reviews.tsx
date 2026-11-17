@@ -39,7 +39,7 @@ export function Reviews() {
                 <FacebookIcon className="h-7 w-7" />
               </span>
               <span>
-                <span className="display block text-3xl">100% Recommended</span>
+                <span className="display block text-2xl">100% Recommended</span>
                 <span className="text-sm text-silver group-hover:text-white">
                   on Facebook &middot; based on 6 reviews &rarr;
                 </span>
@@ -61,7 +61,7 @@ export function Reviews() {
                   &ldquo;{review.text}&rdquo;
                 </blockquote>
                 <figcaption className="mt-6 flex items-center gap-3 border-t border-white/5 pt-5">
-                  <span className="display grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-racing to-racing-hot text-base not-italic">
+                  <span className="display grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-racing to-racing-hot text-sm not-italic">
                     {initials(review.name)}
                   </span>
                   <span>

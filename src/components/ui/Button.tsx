@@ -32,7 +32,7 @@ export function ButtonLink({
 }: ButtonLinkProps) {
   return (
     <a
-      className={`group inline-flex select-none items-center justify-center gap-2 rounded-md font-semibold uppercase tracking-wide transition-all duration-200 active:scale-[0.97] ${variants[variant]} ${sizes[size]} ${className}`}
+      className={`group inline-flex select-none items-center justify-center gap-2 rounded-md font-display font-bold uppercase tracking-wide [font-stretch:112.5%] transition-all duration-200 active:scale-[0.97] ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     >
       {children}

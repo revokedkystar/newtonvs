@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow_Condensed, Inter } from "next/font/google";
+import { Inter, Saira } from "next/font/google";
 import { business, services } from "@/lib/site";
 import "./globals.css";
 
@@ -9,11 +9,16 @@ const inter = Inter({
   display: "swap",
 });
 
-const barlow = Barlow_Condensed({
+/**
+ * Saira (variable width + weight) is the closest open-licence match to the
+ * extended, heavy, slanted lettering in the Newton logo. Widened via
+ * font-stretch in globals.css.
+ */
+const saira = Saira({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
   style: ["normal", "italic"],
-  variable: "--font-barlow",
+  axes: ["wdth"],
+  variable: "--font-saira",
   display: "swap",
 });
 
@@ -88,7 +93,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" className={`${inter.variable} ${barlow.variable}`}>
+    <html lang="en-GB" className={`${inter.variable} ${saira.variable}`}>
       <body>
         {children}
         <script

@@ -100,14 +100,14 @@ export function QuoteForm() {
             <span className="grid h-16 w-16 place-items-center rounded-full bg-racing">
               <CheckIcon className="h-8 w-8" />
             </span>
-            <h3 className="display mt-6 text-4xl">Thanks — request sent!</h3>
+            <h3 className="display mt-6 text-3xl">Thanks — request sent!</h3>
             <p className="mt-3 max-w-sm text-silver">
               James will get back to you shortly with a quote. Need help sooner? Give him a ring.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href={business.phoneHref}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-racing px-6 font-semibold uppercase tracking-wide hover:bg-racing-hot"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-racing px-6 font-display font-bold uppercase tracking-wide [font-stretch:112.5%] hover:bg-racing-hot"
               >
                 <PhoneIcon className="h-4 w-4" />
                 {business.phoneDisplay}
@@ -115,7 +115,7 @@ export function QuoteForm() {
               <button
                 type="button"
                 onClick={() => setStatus("idle")}
-                className="inline-flex h-12 items-center justify-center rounded-md border border-white/20 px-6 font-semibold uppercase tracking-wide hover:border-white/50"
+                className="inline-flex h-12 items-center justify-center rounded-md border border-white/20 px-6 font-display font-bold uppercase tracking-wide [font-stretch:112.5%] hover:border-white/50"
               >
                 Send another
               </button>
@@ -249,7 +249,7 @@ export function QuoteForm() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="group inline-flex h-14 w-full items-center justify-center gap-2 rounded-md bg-racing px-7 font-semibold uppercase tracking-wide shadow-[0_10px_30px_-10px_rgba(220,38,38,0.7)] transition-all hover:bg-racing-hot active:scale-[0.98] disabled:cursor-wait disabled:opacity-70"
+                className="group inline-flex h-14 w-full items-center justify-center gap-2 rounded-md bg-racing px-7 font-display font-bold uppercase tracking-wide [font-stretch:112.5%] shadow-[0_10px_30px_-10px_rgba(220,38,38,0.7)] transition-all hover:bg-racing-hot active:scale-[0.98] disabled:cursor-wait disabled:opacity-70"
               >
                 {status === "submitting" ? (
                   <>

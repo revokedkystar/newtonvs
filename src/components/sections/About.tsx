@@ -64,7 +64,7 @@ export function About() {
               <Reveal key={title} delay={i * 0.06}>
                 <div className="h-full rounded-xl border border-line bg-ink p-5 transition-colors hover:border-white/20">
                   <Icon className="h-6 w-6 text-racing" />
-                  <h3 className="display mt-4 text-xl not-italic">{title}</h3>
+                  <h3 className="display mt-4 text-base">{title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-silver">{text}</p>
                 </div>
               </Reveal>
@@ -90,7 +90,7 @@ export function About() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
-                <figcaption className="display absolute bottom-3 left-3 rounded bg-racing px-2 py-0.5 text-sm">
+                <figcaption className="display absolute bottom-3 left-3 rounded bg-racing px-2 py-0.5 text-xs">
                   {img.label}
                 </figcaption>
               </figure>
@@ -98,7 +98,7 @@ export function About() {
           </div>
 
           <div className="mt-4 flex items-center gap-5 rounded-xl border border-line bg-ink p-5">
-            <p className="display shrink-0 text-6xl text-racing">{business.yearsExperience}+</p>
+            <p className="display shrink-0 text-5xl text-racing">{business.yearsExperience}+</p>
             <p className="text-sm leading-relaxed text-silver">
               <span className="block font-semibold text-white">Years of hands-on experience</span>
               From everyday runarounds and family SUVs to performance cars and classics.

@@ -11,7 +11,7 @@
   --color-plate: #f9d71c;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-barlow), "Arial Narrow", ui-sans-serif, sans-serif;
+  --font-display: var(--font-saira), ui-sans-serif, system-ui, sans-serif;
 
   --animate-marquee: marquee 40s linear infinite;
   @keyframes marquee {
@@ -39,12 +39,20 @@
 
 @layer components {
   /* Slanted athletic heading — echoes the italic NEWTON van lettering */
+  /* Extended, heavy, slanted — matches the NEWTON logotype */
   .display {
-    @apply font-display font-extrabold italic uppercase tracking-tight leading-[0.95];
+    @apply font-display font-black italic uppercase leading-[1.02] tracking-[-0.01em];
+    font-stretch: 125%;
+  }
+  /* Wide, tracked caps — matches "MOBILE MECHANIC" / "VEHICLE SOLUTIONS" */
+  .brand-caps {
+    @apply font-display font-semibold uppercase;
+    font-stretch: 125%;
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-racing;
+    @apply inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.25em] text-racing;
+    font-stretch: 125%;
   }
   .eyebrow::before {
     content: "";
