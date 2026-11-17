@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0a0a0a;
+  --color-ink-2: #141414;
+  --color-ink-3: #1c1c1c;
+  --color-line: #262626;
+  --color-silver: #a3a3a3;
+  --color-racing: #dc2626;
+  --color-racing-hot: #e11d48;
+  --color-plate: #f9d71c;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-barlow), "Arial Narrow", ui-sans-serif, sans-serif;
+
+  --animate-marquee: marquee 40s linear infinite;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-ink text-white font-sans antialiased;
+  }
+  ::selection {
+    @apply bg-racing text-white;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-racing;
+  }
+}
+
+@layer components {
+  /* Slanted athletic heading — echoes the italic NEWTON van lettering */
+  .display {
+    @apply font-display font-extrabold italic uppercase tracking-tight leading-[0.95];
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-racing;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-0.5 w-6 -skew-x-[20deg] bg-racing;
+  }
+
+  /* Speed-stripe divider, like the red bar on the van livery */
+  .speed-stripe {
+    background: linear-gradient(90deg, transparent, var(--color-racing) 20%, var(--color-racing-hot) 80%, transparent);
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
