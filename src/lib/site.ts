@@ -10,6 +10,7 @@ export const business = {
   yearsExperience: 14,
   phoneDisplay: "07715 610775",
   phoneHref: "tel:07715610775",
+  // Not shown on the site — only used as the quote form's delivery inbox (FormSubmit)
   email: "jamesperryman4767@gmail.com",
   town: "Newton Abbot",
   county: "Devon",
@@ -20,9 +21,12 @@ export const business = {
     "Denbury",
     "Teignbridge",
   ],
-  // TODO: swap for the page's exact URL (e.g. https://www.facebook.com/newtonvehiclesolutions)
-  facebookUrl:
-    "https://www.facebook.com/search/top?q=Newton%20vehicle%20solutions",
+  whatsappHref:
+    "https://wa.me/447715610775?text=" +
+    encodeURIComponent("Hi James, I found you on your website and I'd like a quote."),
+  // Facebook page ID 100093484747646 — m.me opens a Messenger chat with the page
+  messengerUrl: "https://m.me/100093484747646",
+  facebookUrl: "https://www.facebook.com/p/Newton-vehicle-solutions-100093484747646/",
   siteUrl: "https://www.newtonvehiclesolutions.co.uk",
 } as const;
 

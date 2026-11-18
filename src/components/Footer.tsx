@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { business, navLinks } from "@/lib/site";
-import { FacebookIcon, MailIcon, PhoneIcon, PinIcon } from "./icons";
+import { FacebookIcon, MessengerIcon, PhoneIcon, PinIcon, WhatsAppIcon } from "./icons";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -54,9 +54,25 @@ export function Footer() {
               </a>
             </li>
             <li>
-              <a href={`mailto:${business.email}`} className="flex items-center gap-3 break-all transition-colors hover:text-white">
-                <MailIcon className="h-4 w-4 shrink-0 text-racing" />
-                {business.email}
+              <a
+                href={business.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 transition-colors hover:text-white"
+              >
+                <WhatsAppIcon className="h-4 w-4 shrink-0 text-[#25D366]" />
+                WhatsApp
+              </a>
+            </li>
+            <li>
+              <a
+                href={business.messengerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 transition-colors hover:text-white"
+              >
+                <MessengerIcon className="h-4 w-4 shrink-0 text-[#0084FF]" />
+                Messenger
               </a>
             </li>
             <li className="flex items-center gap-3">

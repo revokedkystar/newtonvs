@@ -22,7 +22,7 @@ interface ButtonLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   children: ReactNode;
 }
 
-/** Anchor styled as a button (every CTA on this site is a link: tel:, mailto: or #section). */
+/** Anchor styled as a button (every CTA on this site is a link: tel:, WhatsApp, Messenger or #section). */
 export function ButtonLink({
   variant = "primary",
   size = "md",

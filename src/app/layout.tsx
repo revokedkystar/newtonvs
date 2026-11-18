@@ -64,7 +64,6 @@ const jsonLd = {
   image: `${business.siteUrl}/images/van.webp`,
   logo: `${business.siteUrl}/images/logo.png`,
   telephone: "+447715610775",
-  email: business.email,
   url: business.siteUrl,
   founder: business.owner,
   address: {

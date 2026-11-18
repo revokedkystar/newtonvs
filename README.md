@@ -47,6 +47,5 @@ The form posts JSON to `https://formsubmit.co/ajax/jamesperryman4767@gmail.com`.
 
 ## Before going live
 
-- Set `facebookUrl` in `src/lib/site.ts` to the exact Facebook page URL (currently a Facebook search link).
 - Set `siteUrl` in `src/lib/site.ts` to the real domain.
 - Check the short service descriptions and "includes" bullets with James.
