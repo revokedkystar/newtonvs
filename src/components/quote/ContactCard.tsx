@@ -1,5 +1,5 @@
 import { business } from "@/lib/site";
-import { ClockIcon, MailIcon, PhoneIcon, PinIcon } from "../icons";
+import { ClockIcon, MessengerIcon, PhoneIcon, PinIcon, WhatsAppIcon } from "../icons";
 
 export function ContactCard() {
   return (
@@ -20,11 +20,30 @@ export function ContactCard() {
       <div className="flex-1 rounded-2xl border border-line bg-ink-2 p-6 sm:p-8">
         <ul className="space-y-6">
           <li className="flex gap-4">
-            <MailIcon className="mt-0.5 h-5 w-5 shrink-0 text-racing" />
+            <WhatsAppIcon className="mt-0.5 h-5 w-5 shrink-0 text-[#25D366]" />
             <div className="min-w-0">
-              <p className="text-xs uppercase tracking-widest text-silver">Email</p>
-              <a href={`mailto:${business.email}`} className="mt-1 block break-all font-medium hover:text-racing">
-                {business.email}
+              <p className="text-xs uppercase tracking-widest text-silver">WhatsApp</p>
+              <a
+                href={business.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 block font-medium hover:text-racing"
+              >
+                Message {business.phoneDisplay}
+              </a>
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <MessengerIcon className="mt-0.5 h-5 w-5 shrink-0 text-[#0084FF]" />
+            <div className="min-w-0">
+              <p className="text-xs uppercase tracking-widest text-silver">Facebook Messenger</p>
+              <a
+                href={business.messengerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 block font-medium hover:text-racing"
+              >
+                Message us on Facebook
               </a>
             </div>
           </li>
@@ -46,7 +65,7 @@ export function ContactCard() {
             <ClockIcon className="mt-0.5 h-5 w-5 shrink-0 text-racing" />
             <div>
               <p className="text-xs uppercase tracking-widest text-silver">Response</p>
-              <p className="mt-1 font-medium">Quick replies to calls, texts &amp; quote requests</p>
+              <p className="mt-1 font-medium">Quick replies to calls, WhatsApp &amp; Messenger</p>
             </div>
           </li>
         </ul>
