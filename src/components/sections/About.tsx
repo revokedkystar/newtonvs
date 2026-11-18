@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { business } from "@/lib/site";
 import { CarIcon, ClockIcon, HomeIcon, ShieldIcon } from "../icons";
+import { CountUp } from "../ui/CountUp";
 import { Reveal } from "../ui/Reveal";
 import { SectionHeading } from "../ui/SectionHeading";
 
@@ -98,7 +101,7 @@ export function About() {
           </div>
 
           <div className="mt-4 flex items-center gap-5 rounded-xl border border-line bg-ink p-5">
-            <p className="display shrink-0 text-5xl text-racing">{business.yearsExperience}+</p>
+            <p className="display shrink-0 text-5xl text-racing"><CountUp to={business.yearsExperience} />+</p>
             <p className="text-sm leading-relaxed text-silver">
               <span className="block font-semibold text-white">Years of hands-on experience</span>
               From everyday runarounds and family SUVs to performance cars and classics.

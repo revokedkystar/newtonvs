@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { business, navLinks } from "@/lib/site";
-import { FacebookIcon, MailIcon, PhoneIcon, PinIcon } from "./icons";
+import { FacebookIcon, MessengerIcon, PhoneIcon, PinIcon } from "./icons";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -17,7 +18,7 @@ export function Footer() {
             className="h-auto w-56 sm:w-64"
           />
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-silver">
-            Diagnostics, repairs, servicing, brakes, suspension and remaps — brought to your door by{" "}
+            MOTs, diagnostics, repairs, servicing, brakes, suspension and ECU remaps — brought to your door by{" "}
             {business.owner}, with over {business.yearsExperience} years&apos; experience.
           </p>
           <a
@@ -36,9 +37,9 @@ export function Footer() {
           <ul className="mt-4 space-y-3 text-sm text-silver">
             {navLinks.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="transition-colors hover:text-white">
+                <Link href={l.href} className="transition-colors hover:text-white">
                   {l.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -48,15 +49,20 @@ export function Footer() {
           <p className="brand-caps text-sm tracking-[0.2em] text-white">Contact</p>
           <ul className="mt-4 space-y-3 text-sm text-silver">
             <li>
-              <a href={business.phoneHref} className="flex items-center gap-3 transition-colors hover:text-white">
-                <PhoneIcon className="h-4 w-4 text-racing" />
-                {business.phoneDisplay}
+              <a
+                href={business.messengerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 font-medium text-white transition-colors hover:text-racing"
+              >
+                <MessengerIcon className="h-4 w-4 shrink-0 text-[#0084FF]" />
+                Message us on Messenger
               </a>
             </li>
             <li>
-              <a href={`mailto:${business.email}`} className="flex items-center gap-3 break-all transition-colors hover:text-white">
-                <MailIcon className="h-4 w-4 shrink-0 text-racing" />
-                {business.email}
+              <a href={business.phoneHref} className="flex items-center gap-3 transition-colors hover:text-white">
+                <PhoneIcon className="h-4 w-4 text-racing" />
+                {business.phoneDisplay}
               </a>
             </li>
             <li className="flex items-center gap-3">

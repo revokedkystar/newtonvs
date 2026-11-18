@@ -3,20 +3,19 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { business } from "@/lib/site";
-import { PhoneIcon } from "./icons";
+import { MessengerIcon, PhoneIcon } from "./icons";
 
 /**
- * Thumb-reachable Call / Quote bar for phones. Appears once the hero CTAs
- * scroll out of view and hides while the quote form itself is on screen.
+ * Thumb-reachable Messenger / Call bar for phones. Appears once you scroll past the
+ * first screen and hides while the contact section itself is on screen.
  */
 export function MobileActionBar() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const quote = document.getElementById("quote");
     let pastHero = false;
-    let quoteInView = false;
-    const update = () => setVisible(pastHero && !quoteInView);
+    let contactInView = false;
+    const update = () => setVisible(pastHero && !contactInView);
 
     const onScroll = () => {
       pastHero = window.scrollY > window.innerHeight * 0.6;
@@ -24,12 +23,13 @@ export function MobileActionBar() {
     };
     const observer = new IntersectionObserver(
       ([entry]) => {
-        quoteInView = entry.isIntersecting;
+        contactInView = entry.isIntersecting;
         update();
       },
       { threshold: 0.15 },
     );
-    if (quote) observer.observe(quote);
+    const contact = document.getElementById("contact");
+    if (contact) observer.observe(contact);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
@@ -37,6 +37,9 @@ export function MobileActionBar() {
       observer.disconnect();
     };
   }, []);
+
+  const btn =
+    "flex h-12 items-center justify-center gap-2 rounded-md text-sm font-display font-bold uppercase tracking-wide [font-stretch:112.5%] active:scale-[0.97]";
 
   return (
     <AnimatePresence>
@@ -48,19 +51,14 @@ export function MobileActionBar() {
           transition={{ type: "spring", stiffness: 380, damping: 34 }}
           className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-ink/90 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl lg:hidden"
         >
-          <div className="grid grid-cols-2 gap-2">
-            <a
-              href={business.phoneHref}
-              className="flex h-12 items-center justify-center gap-2 rounded-md bg-racing text-sm font-display font-bold uppercase tracking-wide [font-stretch:112.5%] active:scale-[0.97]"
-            >
-              <PhoneIcon className="h-4 w-4" />
-              Call Now
+          <div className="grid grid-cols-[1.6fr_1fr] gap-2">
+            <a href={business.messengerUrl} target="_blank" rel="noopener noreferrer" className={`${btn} bg-racing`}>
+              <MessengerIcon className="h-4 w-4" />
+              Message Us
             </a>
-            <a
-              href="#quote"
-              className="flex h-12 items-center justify-center rounded-md border border-white/20 bg-white/5 text-sm font-display font-bold uppercase tracking-wide [font-stretch:112.5%] active:scale-[0.97]"
-            >
-              Free Quote
+            <a href={business.phoneHref} className={`${btn} border border-white/20 bg-white/5`}>
+              <PhoneIcon className="h-4 w-4" />
+              Call
             </a>
           </div>
         </motion.div>

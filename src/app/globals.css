@@ -64,6 +64,18 @@
     background: linear-gradient(90deg, transparent, var(--color-racing) 20%, var(--color-racing-hot) 80%, transparent);
   }
 
+  /* Headlight streak racing across the hero */
+  .hero-streak {
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.5) 70%, var(--color-racing));
+    transform: translateX(-110%) skewX(-24deg);
+    animation: streak 2.6s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+  }
+
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgb(255 255 255 / 0.35);
+  }
+
   .bg-grid {
     background-image:
       linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
@@ -72,8 +84,15 @@
   }
 }
 
+@keyframes streak {
+  0% { transform: translateX(-110%) skewX(-24deg); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translateX(320%) skewX(-24deg); opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .hero-streak { display: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

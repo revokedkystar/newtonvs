@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { AnchorHTMLAttributes, ReactNode } from "react";
 
 type Variant = "primary" | "outline" | "ghost";
@@ -17,22 +18,35 @@ const sizes: Record<Size, string> = {
 };
 
 interface ButtonLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  href: string;
   variant?: Variant;
   size?: Size;
   children: ReactNode;
 }
 
-/** Anchor styled as a button (every CTA on this site is a link: tel:, mailto: or #section). */
+/** Anchor styled as a button. Internal routes ("/…") use Next's client-side Link. */
 export function ButtonLink({
+  href,
   variant = "primary",
   size = "md",
   className = "",
   children,
   ...props
 }: ButtonLinkProps) {
+  const cls = `group inline-flex select-none items-center justify-center gap-2 rounded-md font-display font-bold uppercase tracking-wide [font-stretch:112.5%] transition-all duration-200 active:scale-[0.97] ${variants[variant]} ${sizes[size]} ${className}`;
+  if (href.startsWith("/")) {
+    return (
+      <Link href={href} className={cls} {...props}>
+        {children}
+      </Link>
+    );
+  }
+  const external = href.startsWith("http");
   return (
     <a
-      className={`group inline-flex select-none items-center justify-center gap-2 rounded-md font-display font-bold uppercase tracking-wide [font-stretch:112.5%] transition-all duration-200 active:scale-[0.97] ${variants[variant]} ${sizes[size]} ${className}`}
+      href={href}
+      className={cls}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       {...props}
     >
       {children}
