@@ -1,14 +1,17 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { business, formatPrice, services, type Service } from "@/lib/site";
-import { useQuote } from "../QuoteContext";
-import { ArrowRightIcon, CheckIcon, PhoneIcon, serviceIcons } from "../icons";
+import { ArrowRightIcon, CheckIcon, MessengerIcon, PhoneIcon, serviceIcons } from "../icons";
+import { Marquee } from "../ui/Marquee";
 import { Reveal } from "../ui/Reveal";
 import { SectionHeading } from "../ui/SectionHeading";
 
+const cta =
+  "flex items-center gap-2 text-sm font-display font-bold uppercase tracking-wide [font-stretch:112.5%] text-white transition-colors hover:text-racing";
+
 function ServiceCard({ service, index }: { service: Service; index: number }) {
-  const { bookService } = useQuote();
   const Icon = serviceIcons[service.icon];
   const quoted = service.priceFrom === null;
 
@@ -55,14 +58,18 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
           ))}
         </ul>
 
-        <button
-          type="button"
-          onClick={() => bookService(service.name)}
-          className="mt-auto flex items-center gap-2 pt-7 text-sm font-display font-bold uppercase tracking-wide [font-stretch:112.5%] text-white transition-colors hover:text-racing"
-        >
-          {quoted ? "Request a Quote" : "Book This Service"}
-          <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </button>
+        <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 pt-7">
+          {service.href && (
+            <Link href={service.href} className={cta}>
+              View all options
+              <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          )}
+          <a href={business.messengerUrl} target="_blank" rel="noopener noreferrer" className={`${cta} ${service.href ? "text-silver" : ""}`}>
+            <MessengerIcon className="h-4 w-4" />
+            {quoted ? "Ask for a quote" : "Book this service"}
+          </a>
+        </div>
       </motion.article>
     </Reveal>
   );
@@ -70,7 +77,11 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
 
 export function Services() {
   return (
-    <section id="services" aria-labelledby="services-title" className="relative py-20 sm:py-28">
+    <section id="services" aria-labelledby="services-title" className="relative overflow-hidden pb-20 sm:pb-28">
+      <Marquee
+        items={services.map((s) => s.name)}
+        className="mb-20 -rotate-1 border-y border-white/10 bg-ink-2 py-4 text-white/90 sm:mb-28"
+      />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <SectionHeading
@@ -86,7 +97,7 @@ export function Services() {
           />
           <Reveal delay={0.1}>
             <p className="max-w-xs text-sm text-silver lg:text-right">
-              Diagnostics &bull; Repairs &bull; Services &bull; Brakes &bull; Suspension
+              MOTs &bull; Diagnostics &bull; Repairs &bull; Services &bull; Brakes &bull; Remaps
             </p>
           </Reveal>
         </div>
@@ -97,8 +108,8 @@ export function Services() {
           ))}
 
           {/* Final grid tile: direct call CTA */}
-          <Reveal delay={0.16} className="h-full lg:col-span-2">
-            <div className="relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-xl bg-racing p-6 sm:p-7 lg:flex-row lg:items-end lg:p-10">
+          <Reveal delay={0.16} className="h-full sm:col-span-2 lg:col-span-1">
+            <div className="relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-xl bg-racing p-6 sm:p-7">
               <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
               <div className="relative max-w-md">
                 <p className="display text-2xl sm:text-3xl lg:text-4xl">Not sure what&apos;s wrong?</p>
@@ -107,13 +118,24 @@ export function Services() {
                   and a fair price — no obligation.
                 </p>
               </div>
-              <a
-                href={business.phoneHref}
-                className="relative inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-md bg-ink px-6 font-display font-bold uppercase tracking-wide [font-stretch:112.5%] text-white transition-transform active:scale-[0.97] hover:bg-ink-3"
-              >
-                <PhoneIcon className="h-4 w-4" />
-                {business.phoneDisplay}
-              </a>
+              <div className="relative flex flex-col gap-2 sm:flex-row lg:flex-col">
+                <a
+                  href={business.messengerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-12 shrink-0 items-center sm:flex-1 lg:flex-none justify-center gap-2 rounded-md bg-ink px-6 font-display font-bold uppercase tracking-wide [font-stretch:112.5%] text-white transition-transform active:scale-[0.97] hover:bg-ink-3"
+                >
+                  <MessengerIcon className="h-4 w-4" />
+                  Message James
+                </a>
+                <a
+                  href={business.phoneHref}
+                  className="inline-flex h-12 shrink-0 items-center sm:flex-1 lg:flex-none justify-center gap-2 rounded-md border border-white/40 px-6 font-display font-bold uppercase tracking-wide [font-stretch:112.5%] text-white transition-colors hover:bg-white/10"
+                >
+                  <PhoneIcon className="h-4 w-4" />
+                  {business.phoneDisplay}
+                </a>
+              </div>
             </div>
           </Reveal>
         </div>

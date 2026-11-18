@@ -15,37 +15,36 @@ npm run build && npm start
 ## File structure
 
 ```
-public/images/            logo, van, and recent-work photos
+public/images/              logo, van, and recent-work photos
 src/
 ├─ app/
-│  ├─ layout.tsx          fonts, SEO metadata, LocalBusiness JSON-LD
-│  ├─ page.tsx            assembles the sections
-│  └─ globals.css         brand theme tokens (colours, fonts), shared utilities
-├─ lib/site.ts            ★ all business details, services, prices and reviews
+│  ├─ layout.tsx            fonts, SEO metadata, JSON-LD, shared navbar/footer/action bar
+│  ├─ template.tsx          page-transition animation
+│  ├─ page.tsx              home page sections
+│  ├─ ecu-remapping/        ECU remapping options page
+│  ├─ sitemap.ts
+│  └─ globals.css           brand theme tokens (colours, fonts), shared utilities & keyframes
+├─ lib/site.ts              ★ business details, services, prices, remap options, example jobs, reviews
 └─ components/
-   ├─ Navbar.tsx          sticky nav + mobile menu
-   ├─ MobileActionBar.tsx sticky Call / Quote bar on phones
-   ├─ Footer.tsx
-   ├─ Providers.tsx       MotionConfig + QuoteProvider
-   ├─ QuoteContext.tsx    shared "selected service" state ("Book This Service" → form)
-   ├─ icons.tsx
-   ├─ ui/                 Button, Reveal, SectionHeading
-   ├─ quote/              QuoteForm, ContactCard, form fields + UK plate input
-   └─ sections/           Hero, Services, About, Reviews, QuoteSection
+   ├─ Navbar.tsx            sticky nav + full-screen mobile menu
+   ├─ MobileActionBar.tsx   sticky Messenger / Call bar on phones
+   ├─ ScrollProgress.tsx    red scroll-progress bar
+   ├─ Footer.tsx, icons.tsx, Providers.tsx
+   ├─ ui/                   Button, Reveal, SectionHeading, CountUp, Marquee
+   ├─ remap/                animated gauge + process timeline for the remap page
+   └─ sections/             Hero, Services, ExampleJobs, About, Reviews, Contact
 ```
 
-To change prices, services, reviews or contact details, edit `src/lib/site.ts`.
+To change prices, services, remap options, example jobs, reviews or contact details, edit `src/lib/site.ts`.
 
-## Quote form (FormSubmit)
+## Contact
 
-The form posts JSON to `https://formsubmit.co/ajax/jamesperryman4767@gmail.com`.
-
-1. Deploy the site and submit the form once.
-2. FormSubmit emails an **activation link** to that inbox — click it. Submissions won't be delivered until you do.
-3. Optional: the activation email also gives a random alias. Set it in `NEXT_PUBLIC_FORM_ENDPOINT`
-   (see `.env.example`) to keep the email address out of the page source.
+There is no contact form or email. Customers are sent to **Facebook Messenger** (`messengerUrl`, the
+primary call to action everywhere) or can **call** (`phoneHref`, the secondary option).
 
 ## Before going live
 
 - Set `siteUrl` in `src/lib/site.ts` to the real domain.
+- Confirm the remap options and prices (`remapOptions`) and the MOT description with James.
+- Replace the illustrative `exampleJobs` with real jobs and photos when available.
 - Check the short service descriptions and "includes" bullets with James.

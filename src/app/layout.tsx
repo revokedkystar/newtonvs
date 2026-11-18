@@ -1,5 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Saira } from "next/font/google";
+import { Footer } from "@/components/Footer";
+import { MobileActionBar } from "@/components/MobileActionBar";
+import { Navbar } from "@/components/Navbar";
+import { Providers } from "@/components/Providers";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { business, services } from "@/lib/site";
 import "./globals.css";
 
@@ -23,11 +28,11 @@ const saira = Saira({
 });
 
 const title = `Mobile Mechanic Newton Abbot | ${business.name}`;
-const description = `${business.yearsExperience}+ years' experience. Servicing, diagnostics, brakes, remaps and repairs at your home or workplace across Newton Abbot & Teignbridge. Call-outs from £40. Call ${business.phoneDisplay}.`;
+const description = `${business.yearsExperience}+ years' experience. Servicing, MOTs, diagnostics, brakes, ECU remaps and repairs at your home or workplace across Newton Abbot & Teignbridge. Call-outs from £40. Message us on Facebook or call ${business.phoneDisplay}.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(business.siteUrl),
-  title,
+  title: { default: title, template: `%s | ${business.name}` },
   description,
   keywords: [
     "mobile mechanic Newton Abbot",
@@ -35,6 +40,7 @@ export const metadata: Metadata = {
     "car servicing Newton Abbot",
     "ECU remap Devon",
     "brake pads Newton Abbot",
+    "MOT Newton Abbot",
     "car diagnostics Kingsteignton",
   ],
   alternates: { canonical: "/" },
@@ -94,7 +100,19 @@ export default function RootLayout({
   return (
     <html lang="en-GB" className={`${inter.variable} ${saira.variable}`}>
       <body>
-        {children}
+        <Providers>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-md focus:bg-racing focus:px-4 focus:py-2"
+          >
+            Skip to content
+          </a>
+          <ScrollProgress />
+          <Navbar />
+          <main id="main">{children}</main>
+          <Footer />
+          <MobileActionBar />
+        </Providers>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
