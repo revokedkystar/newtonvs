@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { business } from "@/lib/site";
 import { HomeIcon, MessengerIcon, PhoneIcon, StarIcon, TagIcon, ThumbIcon, WrenchIcon } from "../icons";
 import { ButtonLink } from "../ui/Button";
@@ -35,6 +35,16 @@ export function Hero() {
   const vanY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
   const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
+  // Parallax only on desktop: on phones the text and van are stacked, so moving them would make them overlap.
+  const [desktop, setDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   const fadeUp = (delay: number) => ({
     initial: { opacity: 0, y: 28 },
@@ -83,7 +93,7 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto min-h-[calc(100svh-4rem)] max-w-7xl px-4 pb-10 pt-10 sm:px-6 sm:pt-16 lg:flex lg:min-h-[calc(100svh-5rem-5.5rem)] lg:flex-col lg:justify-center lg:px-8 lg:pb-16 lg:pt-10">
-        <motion.div style={{ y: textY, opacity: fade }} className="relative z-10">
+        <motion.div style={desktop ? { y: textY, opacity: fade } : undefined} className="relative z-10">
           <motion.p {...fadeUp(0)} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/80 backdrop-blur">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -143,8 +153,8 @@ export function Hero() {
 
         {/* The liveried van, driving in from the left over the red bands */}
         <motion.div
-          style={{ x: vanX, y: vanY }}
-          className="pointer-events-none relative -mx-4 mt-8 sm:-mx-6 lg:absolute lg:bottom-[8%] lg:right-[-6rem] lg:mx-0 lg:mt-0 lg:w-[58%] xl:right-[-8rem] xl:w-[60%]"
+          style={desktop ? { x: vanX, y: vanY } : undefined}
+          className="pointer-events-none relative -mx-4 mt-10 flex flex-col sm:-mx-6 lg:absolute lg:bottom-[8%] lg:right-[-6rem] lg:mx-0 lg:mt-0 lg:w-[58%] xl:right-[-8rem] xl:w-[60%]"
         >
           <motion.div
             initial={{ opacity: 0, x: -140 }}
@@ -164,31 +174,35 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Floating glass badges */}
+          {/* Glass badges: a tidy row above the van on phones, floating over it on desktop */}
+          <div className="order-first mb-4 flex items-center justify-between gap-2 px-4 sm:px-6 lg:order-none lg:mb-0 lg:block lg:p-0">
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.1, ease }}
-            className="absolute -top-6 left-[8%] rounded-xl border border-white/15 bg-ink/70 px-3 py-2 backdrop-blur-md sm:-top-10 sm:px-4 sm:py-3 lg:-top-24 lg:left-[8%]"
+            className="flex items-center gap-2 rounded-xl border border-white/15 bg-ink/70 px-3 py-2 backdrop-blur-md sm:px-4 lg:absolute lg:-top-24 lg:left-[8%] lg:block lg:py-3"
           >
-            <p className="display text-2xl text-white sm:text-3xl">
+            <p className="display text-lg text-white sm:text-2xl lg:text-3xl">
               <CountUp to={business.yearsExperience} />+
             </p>
-            <p className="text-[10px] font-medium uppercase tracking-widest text-silver sm:text-xs">Years in the trade</p>
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-white lg:font-medium lg:text-xs lg:text-silver">
+              Years<span className="hidden sm:inline"> in the trade</span>
+            </p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.25, ease }}
-            className="absolute -top-4 right-[6%] flex items-center gap-2 rounded-xl border border-white/15 bg-ink/70 px-3 py-2 backdrop-blur-md sm:-top-8 sm:px-4 sm:py-3 lg:-top-8 lg:right-[16%]"
+            className="flex items-center gap-2 rounded-xl border border-white/15 bg-ink/70 px-3 py-2.5 backdrop-blur-md sm:px-4 lg:absolute lg:-top-8 lg:right-[16%] lg:py-3"
           >
             <span className="flex text-amber-400">
               {Array.from({ length: 5 }, (_, i) => (
-                <StarIcon key={i} className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                <StarIcon key={i} className="h-3 w-3 sm:h-4 sm:w-4" />
               ))}
             </span>
             <span className="text-[10px] font-semibold uppercase tracking-widest text-white sm:text-xs">100% recommended</span>
           </motion.div>
+          </div>
         </motion.div>
       </div>
 
