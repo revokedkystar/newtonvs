@@ -31,6 +31,8 @@ const gallery = [
   { src: "/images/ferrari-360.webp", alt: "Red Ferrari 360 Spider serviced by Newton Vehicle Solutions", w: 1628, h: 1154, label: "Performance" },
   { src: "/images/bmw-x5.webp", alt: "Black BMW X5 M Sport worked on by Newton Vehicle Solutions", w: 1599, h: 1178, label: "Modern" },
   { src: "/images/classic-van.webp", alt: "Classic red ice-cream van being prepared for summer", w: 622, h: 324, label: "Classic" },
+  { src: "/images/mercedes-c63-remap.webp", alt: "Matte black Mercedes-AMG C63 coupe after a stage 2 remap, MOT and brake work", w: 2000, h: 1500, label: "Stage 2 remap" },
+  { src: "/images/clutch-replacement.webp", alt: "Gearbox lowered from a car on a ramp during a clutch replacement", w: 2000, h: 1500, label: "Clutch job" },
 ];
 
 export function About() {
