@@ -58,9 +58,13 @@ function JobCard({ job, index }: { job: ExampleJob; index: number }) {
             <ClockIcon className="h-4 w-4 text-racing" />
             {job.time}
           </span>
-          <span className="text-silver">
-            From <span className="display text-xl text-white">{formatPrice(job.priceFrom)}</span>
-          </span>
+          {job.priceFrom === null ? (
+            <span className="text-silver">Quoted per job</span>
+          ) : (
+            <span className="text-silver">
+              From <span className="display text-xl text-white">{formatPrice(job.priceFrom)}</span>
+            </span>
+          )}
         </div>
       </div>
     </motion.article>
